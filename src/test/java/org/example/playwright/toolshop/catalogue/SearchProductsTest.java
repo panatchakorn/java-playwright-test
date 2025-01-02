@@ -1,5 +1,7 @@
-package org.example.playwright;
+package org.example.playwright.toolshop.catalogue;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.assertj.core.api.Assertions;
 import org.example.playwright.toolshop.fixtures.PlaywrightTestCase;
 import org.example.playwright.toolshop.pageobjects.*;
@@ -13,6 +15,7 @@ public class SearchProductsTest extends PlaywrightTestCase {
     ProductList productList;
     NavigationBar navigationBar;
 
+    @Step("Setup go to homepage")
     @BeforeEach
     public void setup() {
         searchComponent = new SearchComponent(page);
@@ -27,7 +30,7 @@ public class SearchProductsTest extends PlaywrightTestCase {
 
         searchComponent.searchBy("tape");
         var matchingProducts = productList.getProductNames();
-
+        Allure.step("Verify matching products: " + matchingProducts);
         Assertions.assertThat(matchingProducts)
                 .contains("Tape Measure 7.5m", "Measuring Tape", "Tape Measure 5m");
     }
@@ -38,6 +41,7 @@ public class SearchProductsTest extends PlaywrightTestCase {
         searchComponent.searchBy("unknown");
         var matchingProducts = productList.getProductNames();
 
+        Allure.step("Verify no products found");
         Assertions.assertThat(matchingProducts)
                 .isEmpty();
         Assertions.assertThat(productList.getSearchCompletedMessage()).contains("There are no products found.");

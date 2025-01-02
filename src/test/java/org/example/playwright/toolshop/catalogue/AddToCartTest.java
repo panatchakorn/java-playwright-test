@@ -1,5 +1,7 @@
-package org.example.playwright;
+package org.example.playwright.toolshop.catalogue;
 
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.assertj.core.api.Assertions;
 import org.example.playwright.domain.CartLineItem;
 import org.example.playwright.toolshop.fixtures.PlaywrightTestCase;
@@ -18,6 +20,7 @@ public class AddToCartTest extends PlaywrightTestCase {
     NavigationBar navigationBar;
     CheckoutCart checkoutCart;
 
+    @Step("Setup go to homepage")
     @BeforeEach
     public void setup() {
         searchComponent = new SearchComponent(page);
@@ -37,6 +40,7 @@ public class AddToCartTest extends PlaywrightTestCase {
         productDetails.addToCart();
         navigationBar.openCart();
         List<CartLineItem> lineItems = checkoutCart.getLineItems();
+        Allure.step("Verify cart items: " + lineItems);
         Assertions.assertThat(lineItems)
                 .hasSize(1)
                 .first()
@@ -65,6 +69,7 @@ public class AddToCartTest extends PlaywrightTestCase {
 
         List<CartLineItem> lineItems = checkoutCart.getLineItems();
 
+        Allure.step("Verify cart items");
         Assertions.assertThat(lineItems).hasSize(2);
         List<String> productNames = lineItems.stream()
                 .map(CartLineItem::title)

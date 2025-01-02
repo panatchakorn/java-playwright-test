@@ -1,4 +1,4 @@
-package org.example.playwright;
+package org.example.playwright.toolshop.catalogue;
 
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.Playwright;

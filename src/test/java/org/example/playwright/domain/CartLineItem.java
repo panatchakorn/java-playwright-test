@@ -1,4 +1,8 @@
-package org.example.playwright.toolshop.domain;
+package org.example.playwright.domain;
 
-public record CartLineItem() {
+public record CartLineItem(
+        String title,
+        int quantity,
+        double price,
+        double total) {
 }

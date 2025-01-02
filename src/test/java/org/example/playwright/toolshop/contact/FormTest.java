@@ -1,7 +1,9 @@
-package org.example.playwright;
+package org.example.playwright.toolshop.contact;
 
 import com.microsoft.playwright.assertions.PlaywrightAssertions;
 import com.microsoft.playwright.options.AriaRole;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.assertj.core.api.Assertions;
 import org.example.playwright.toolshop.fixtures.PlaywrightTestCase;
 import org.example.playwright.toolshop.pageobjects.ContactForm;
@@ -24,11 +26,13 @@ public class FormTest extends PlaywrightTestCase {
     class WhenInteractingWithTextFields {
         ContactForm contactForm;
 
+        @Step("Open contact form")
         @BeforeEach
         void setup() {
             contactForm = new ContactForm(page);
             page.navigate("https://practicesoftwaretesting.com/contact");
         }
+
 
         @DisplayName("Complete the form")
         @Test
@@ -60,6 +64,7 @@ public class FormTest extends PlaywrightTestCase {
             assertThat(uploadedFile).endsWith("sample-data.txt");
 
             contactForm.submitForm();
+            Allure.step("Verify success message");
             Assertions.assertThat(contactForm.getAlertSuccessMessage())
                     .contains("Thanks for your message! We will contact you shortly.");
         }
@@ -78,6 +83,7 @@ public class FormTest extends PlaywrightTestCase {
             contactForm.clearForm(fieldName);
             contactForm.submitForm();
 
+            Allure.step("Verify error message");
             var errorMessages = page.getByRole(AriaRole.ALERT)
                     .getByText(fieldName + " is required");
             PlaywrightAssertions.assertThat(errorMessages)
