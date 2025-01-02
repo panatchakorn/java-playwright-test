@@ -1,0 +1,56 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Jan 02 02:46:13 UTC 2025","Thu Jan 02 02:46:20 UTC 2025","7195","","org.example.playwright.toolshop.catalogue.AddToCartTest","","org.example.playwright.toolshop.catalogue.AddToCartTest","viewProductsAfterAddToCart","View products after add to cart",""
+"failed","Thu Jan 02 02:46:21 UTC 2025","Thu Jan 02 02:46:28 UTC 2025","6725","","Product Catalog","","The one where Sally only wants to see Power Drills","","The one where Sally only wants to see Power Drills","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:45:36 UTC 2025","Thu Jan 02 02:46:13 UTC 2025","37335","","org.example.playwright.toolshop.catalogue.AddToCartTest","","org.example.playwright.toolshop.catalogue.AddToCartTest","viewProductsAfterAddingMultipleItemsToCart","View products after add multiple items to cart",""
+"passed","Thu Jan 02 02:46:14 UTC 2025","Thu Jan 02 02:46:15 UTC 2025","1365","","org.example.playwright.toolshop.contact.FormTest.WhenInteractingWithTextFields","","org.example.playwright.toolshop.contact.FormTest$WhenInteractingWithTextFields","mandatoryFields","Mandatory Fields Test [4] fieldName=Message",""
+"passed","Thu Jan 02 02:46:30 UTC 2025","Thu Jan 02 02:46:33 UTC 2025","2710","","Product Catalog","","The one where Sally searches for an Adjustable Wrench","","The one where Sally searches for an Adjustable Wrench","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:45:36 UTC 2025","Thu Jan 02 02:46:06 UTC 2025","30135","","org.example.playwright.toolshop.catalogue.SearchProductsTest","","org.example.playwright.toolshop.catalogue.SearchProductsTest","clearSearch","Clear search products",""
+"passed","Thu Jan 02 02:46:09 UTC 2025","Thu Jan 02 02:46:11 UTC 2025","2428","","org.example.playwright.toolshop.contact.FormTest.WhenInteractingWithTextFields","","org.example.playwright.toolshop.contact.FormTest$WhenInteractingWithTextFields","mandatoryFields","Mandatory Fields Test [2] fieldName=Last Name",""
+"passed","Thu Jan 02 02:46:09 UTC 2025","Thu Jan 02 02:46:12 UTC 2025","2805","","org.example.playwright.toolshop.catalogue.SearchProductsTest","","org.example.playwright.toolshop.catalogue.SearchProductsTest","searchProducts","Search products By Keyword",""
+"passed","Thu Jan 02 02:46:21 UTC 2025","Thu Jan 02 02:46:27 UTC 2025","5483","","Product Catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"failed","Thu Jan 02 02:46:27 UTC 2025","Thu Jan 02 02:46:30 UTC 2025","3847","","Product Catalog","","The one where Sally searches for a more general term","","The one where Sally searches for a more general term","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:46:11 UTC 2025","Thu Jan 02 02:46:14 UTC 2025","2258","","org.example.playwright.toolshop.contact.FormTest.WhenInteractingWithTextFields","","org.example.playwright.toolshop.contact.FormTest$WhenInteractingWithTextFields","mandatoryFields","Mandatory Fields Test [3] fieldName=Email",""
+"passed","Thu Jan 02 02:45:36 UTC 2025","Thu Jan 02 02:46:06 UTC 2025","30132","","org.example.playwright.toolshop.contact.FormTest.WhenInteractingWithTextFields","","org.example.playwright.toolshop.contact.FormTest$WhenInteractingWithTextFields","completeForm","Complete the form",""
+"passed","Thu Jan 02 02:46:28 UTC 2025","Thu Jan 02 02:46:32 UTC 2025","3559","","Product Catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:46:28 UTC 2025","Thu Jan 02 02:46:32 UTC 2025","3868","","Product Catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"failed","Thu Jan 02 02:46:21 UTC 2025","Thu Jan 02 02:46:28 UTC 2025","7159","","Product Catalog","","The one where Sally only wants to see Hand Saws","","The one where Sally only wants to see Hand Saws","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:46:06 UTC 2025","Thu Jan 02 02:46:09 UTC 2025","3190","","org.example.playwright.toolshop.catalogue.SearchProductsTest","","org.example.playwright.toolshop.catalogue.SearchProductsTest","searchProductsThatDoNotExist","Search products that do not exist",""
+"passed","Thu Jan 02 02:46:06 UTC 2025","Thu Jan 02 02:46:09 UTC 2025","2611","","org.example.playwright.toolshop.contact.FormTest.WhenInteractingWithTextFields","","org.example.playwright.toolshop.contact.FormTest$WhenInteractingWithTextFields","mandatoryFields","Mandatory Fields Test [1] fieldName=First Name",""
+"passed","Thu Jan 02 02:46:21 UTC 2025","Thu Jan 02 02:46:27 UTC 2025","5277","","Product Catalog","","The one where Sally searches for a product that doesn't exist","","The one where Sally searches for a product that doesn't exist","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
+"passed","Thu Jan 02 02:46:27 UTC 2025","Thu Jan 02 02:46:31 UTC 2025","4081","","Product Catalog","","Sally sorts by different criteria","","Sally sorts by different criteria","  As a customer,
+  I want to easily search, filter, and sort products in the catalog
+  So that I can find what I need quickly
+
+  Sally is ab online shopper"
