@@ -11,9 +11,15 @@ on:
 #    branches:
 #      - '**'  # Run on every pull request for any branch
 
+permissions:
+    contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+        contents: write
+        pages: write
 
     steps:
       # Step 1: Check out the repository code
