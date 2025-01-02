@@ -56,7 +56,14 @@ jobs:
 
       # Step 6: Run Maven to execute Playwright tests
       - name: Run Playwright Tests
-        run: mvn verify
+        run: xvfb-run mvn verify
+
+      - name: List files in target folder
+        run: |
+          echo "Listing files in target folder"
+          ls -R target
+          echo "Listing files in log folder"
+          ls -R target/log        
 
       # Step 7: Archive any trace files
       - name: Archive trace files
