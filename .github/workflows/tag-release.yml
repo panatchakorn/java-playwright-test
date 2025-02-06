@@ -54,12 +54,12 @@ jobs:
 
       - name: Create new tag
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          run: |
-            git config --global user.name "github-actions[bot]"
-            git config --global user.email "github-actions[bot]@users.noreply.github.com"
-            git tag ${{ env.new_version }}
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} ${{ env.new_version }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag ${{ env.new_version }}
+          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} ${{ env.new_version }}
 
       - name: Generate release notes
         id: generate-release-notes
