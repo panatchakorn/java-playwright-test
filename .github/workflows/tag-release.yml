@@ -32,12 +32,12 @@ jobs:
       - name: Get the latest tag
         id: get-latest-tag
         run: |
-          if git describe --tags `git rev-list --tags --max-count=1` > /dev/null 2>&1; then
-            latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          if git rev-list --tags --max-count=1 > /dev/null 2>&1; then
+            latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
           else
             latest_tag=""
           fi
-            echo "latest_tag=${latest_tag}" >> $GITHUB_ENV
+          echo "latest_tag=${latest_tag}" >> $GITHUB_ENV
 
       - name: Determine new version
         id: determine-version
