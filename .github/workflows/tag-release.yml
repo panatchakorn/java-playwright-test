@@ -13,11 +13,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up GitHub CLI
-        uses: actions/setup-gh@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Get the latest tag
         id: get-latest-tag
         run: |
@@ -88,6 +83,8 @@ jobs:
             return `${releaseNotes}\n\n## Commits\n${commitDetails}\n\n## Contributors\n${contributorsList}`;
 
       - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create ${{ env.new_version }} --title "Release ${{ env.new_version }}" --notes "${{ steps.generate-release-notes.outputs.releaseNotes }}"
 
@@ -96,5 +93,7 @@ jobs:
           zip -r java-playwright-test-${{ env.new_version }}.zip .
 
       - name: Upload release assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release upload ${{ env.new_version }} java-playwright-test-${{ env.new_version }}.zip --clobber
