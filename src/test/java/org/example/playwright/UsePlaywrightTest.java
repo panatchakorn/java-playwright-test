@@ -35,4 +35,5 @@ public class UsePlaywrightTest {
         String title = page.title();
         Assertions.assertEquals("Practice Software Testing - Toolshop - v5.0", title);
     }
+
 }
