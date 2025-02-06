@@ -1,0 +1,100 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up GitHub CLI
+        uses: actions/setup-gh@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get the latest tag
+        id: get-latest-tag
+        run: |
+          latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+          echo "latest_tag=${latest_tag}" >> $GITHUB_ENV
+
+      - name: Determine new version
+        id: determine-version
+        run: |
+          if [ -z "${{ env.latest_tag }}" ]; then
+            new_version="0.0.1"
+          else
+            IFS='.' read -r -a parts <<< "${{ env.latest_tag }}"
+            major=${parts[0]}
+            minor=${parts[1]}
+            patch=${parts[2]}
+            commit_message=$(git log -1 --pretty=%B)
+            shopt -s nocasematch
+            if [[ $commit_message == *"[major]"* ]]; then
+              major=$((major + 1))
+              minor=0
+              patch=0
+            elif [[ $commit_message == *"[minor]"* ]]; then
+              minor=$((minor + 1))
+              patch=0
+            elif [[ $commit_message == *"[patch]"* ]]; then
+              patch=$((patch + 1))
+            else
+              patch=$((patch + 1))
+            fi
+            shopt -u nocasematch
+            new_version="${major}.${minor}.${patch}"
+          fi
+          echo "new_version=${new_version}" >> $GITHUB_ENV
+
+      - name: Create new tag
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git tag ${{ env.new_version }}
+          git push origin ${{ env.new_version }}
+
+      - name: Generate release notes
+        id: generate-release-notes
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { generateReleaseNotes } = require('@actions/github/lib/utils');
+            const releaseNotes = await generateReleaseNotes({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: process.env.new_version,
+              previous_tag_name: process.env.latest_tag || '',
+            });
+            const commits = await github.repos.listCommits({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              per_page: 100
+            });
+            let commitDetails = '';
+            let contributors = new Set();
+            commits.data.forEach(commit => {
+              commitDetails += `- ${commit.commit.message} (${commit.sha.substring(0, 7)})\n`;
+              contributors.add(commit.commit.author.name);
+            });
+            let contributorsList = Array.from(contributors).join(', ');
+            return `${releaseNotes}\n\n## Commits\n${commitDetails}\n\n## Contributors\n${contributorsList}`;
+
+      - name: Create GitHub release
+        run: |
+          gh release create ${{ env.new_version }} --title "Release ${{ env.new_version }}" --notes "${{ steps.generate-release-notes.outputs.releaseNotes }}"
+
+      - name: Archive project files
+        run: |
+          zip -r java-playwright-test-${{ env.new_version }}.zip .
+
+      - name: Upload release assets
+        run: |
+          gh release upload ${{ env.new_version }} java-playwright-test-${{ env.new_version }}.zip --clobber
