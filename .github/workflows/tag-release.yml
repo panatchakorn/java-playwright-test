@@ -53,11 +53,13 @@ jobs:
           echo "new_version=${new_version}" >> $GITHUB_ENV
 
       - name: Create new tag
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git tag ${{ env.new_version }}
-          git push origin ${{ env.new_version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git tag ${{ env.new_version }}
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} ${{ env.new_version }}
 
       - name: Generate release notes
         id: generate-release-notes
