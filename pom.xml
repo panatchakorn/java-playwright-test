@@ -201,6 +201,12 @@
             <artifactId>allure-cucumber7-jvm</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.deque.html.axe-core</groupId>
+            <artifactId>playwright</artifactId>
+            <version>4.10.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>
